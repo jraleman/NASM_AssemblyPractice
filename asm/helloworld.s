@@ -1,5 +1,7 @@
 ; helloworld.s
 
+global  _start                        ; must be decalred because of linker (ld)
+
 section .data                         ; used for declaring initialized data or constants
 var:                                  ; define structure to place variables (optional)
     .msg   db  'Hello world!', 0Ah    ; assign string message variable
@@ -8,8 +10,6 @@ var:                                  ; define structure to place variables (opt
                                       ; 0Ah is the line feed character
 
 section .text                         ; used for keeping the **actual code**
-    global  _start                    ; must be decalred because of linker (ld)
-
 _start:                               ; tells linker the entry point
 
     ; function write (

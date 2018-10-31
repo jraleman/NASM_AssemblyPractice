@@ -1,13 +1,13 @@
 ; triangle.s
 
+global _start
+
 section .bss                    ; ...
     maxlines  equ   8           ; ...
     dataSize  equ   44
     output:   resb  dataSize    ; ...
 
 section .text
-    global _start
-
 _start:
     mov       rdx, output       ; rdx holds address of the next byte to write
     mov       r8, 1             ; initial line length
@@ -27,7 +27,7 @@ lineDone:
     cmp       r8, maxlines      ; compare r8 to maxlines value
                                 ; did it finish the last line?
     jng       line              ; if not, keep writting this line
-    
+
 done:                           ; write triangle output (string)
     mov       rax, 0x02000004
     mov       rdi, 1
