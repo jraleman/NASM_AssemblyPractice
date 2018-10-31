@@ -1,17 +1,31 @@
 ; Hello world
 
-section .data                     ; used for declaring initialized data
-                                  ; or constants
-    msg   db  'Hello world!', 0Ah ; assign string to msg variable
-                                  ; db means defined bytes
-                                  ; 0Ah is the line feed character
+section .data                       ; used for declaring initialized data or constants
+var:
+    .msg   db  'Hello world!', 0Ah  ; assign string to variable .msg
+                                    ; . (dot) used for name convension (structure like)
+                                    ; db means defined bytes
+                                    ; 0Ah is the line feed character
 
-section .text                     ; used for keeping the **actual code**
-    global  _start                ; must be decalred because of linker (ld)
+section .text                       ; used for keeping the **actual code**
+    global  _start                  ; must be decalred because of linker (ld)
 
-_start:                           ; tells linker the entry point
-    mov   edx, 13                 ; bytes to write (pluse 0Ah character)
-    mov   ecx, msg                ; move var msg memory address to register ecx
-    mov   ebx, 1                  ; write to file 1 (STDOUT)
-    mov   eax, 4                  ; invoke SYS_WRITE (kernel opcode 4)
-    int   80h                     ; call kernel
+_start:                             ; tells linker the entry point
+
+    ; function write (
+    mov   rax, 0x02000004           ; system call = 1 (write)
+
+    ; fd, *str, len )
+    mov   rdi, 1                    ; (fd) file descriptor = 1 (STDOUT)
+    mov   rsi, var.msg              ; (*str) move var.msg string memory address
+    mov   rdx, 13                   ; (len) bytes to write (pluse 0Ah character)
+
+    ; {
+    syscall                         ; invoke operating system to do the write
+
+    ; return ([black box thingy])
+    mov   rax, 0x02000001           ; invoke SYS_WRITE (kernel opcode 4)
+    xor   rdi, rdi                  ; exit code 0
+
+    ; }
+    syscall
