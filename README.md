@@ -9,7 +9,7 @@
 
 ```
 nasm -f macho64 asm/{file}.s
-ld --arch x86_64 -macosx_version_min 10.9.0 -lSystem -o a.out asm/{file}.o
+ld -arch x86_64 -macosx_version_min 10.9.0 -no_pie -lSystem -e _start -o a.out asm/{file}.o
 ./a.out
 ```
 
