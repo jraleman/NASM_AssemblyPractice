@@ -2,16 +2,12 @@
 
 ...
 
-## Try
-
-...
-
-### Mac OS X
+## Usage (MacOSX Only)
 
 ```
-nasm -f macho64 ${path-to-asm-file}
-ld -macosx_version_min 10.7.0 -lSystem -o ${bin} ${obj}
-./${bin}
+nasm -f macho64 asm/lesson*.s
+ld --arch x86_64 -macosx_version_min 10.9.0 -lSystem -o a.out asm/lesson*.o
+./a.out
 ```
 
 ## TODO
@@ -36,4 +32,4 @@ ld -macosx_version_min 10.7.0 -lSystem -o ${bin} ${obj}
 
 ## Sauce
 
-- https://stackoverflow.com/questions/1817577/what-does-int-0x80-mean-in-assembly-code
+- http://cs.lmu.edu/~ray/notes/nasmtutorial/
