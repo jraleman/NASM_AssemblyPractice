@@ -2,34 +2,22 @@
 
 ...
 
-## Usage (MacOSX Only)
+## Usage
+
+### Mac OS X
+
 
 ```
-nasm -f macho64 asm/lesson*.s
-ld --arch x86_64 -macosx_version_min 10.9.0 -lSystem -o a.out asm/lesson*.o
+nasm -f macho64 asm/{file}.s
+ld --arch x86_64 -macosx_version_min 10.9.0 -lSystem -o a.out asm/{file}.o
 ./a.out
 ```
 
-## TODO
+### Linux
 
-...
-
-### Define
-
-- `Sections`
-  - `.data`
-  - `.text`
-- `global`
-- `db`
-- `mov`
-- Registers
-  - `eax`
-  - `ebx`
-  - `ecx`
-  - `edx`
-- `int`
-- `80h, 0Ah`... things that end with 'h' are special chars?
+- See [Hackintosh](https://hackintosh.com/)
 
 ## Sauce
 
 - http://cs.lmu.edu/~ray/notes/nasmtutorial/
+- https://www.tutorialspoint.com/assembly_programming/index.htm
