@@ -33,7 +33,7 @@ ld -arch x86_64 -macosx_version_min 10.9.0 -no_pie -lSystem -o a.out asm/{file}.
 And if you wish to mix `c` and `s`, you can run the following:
 
 ```
-gcc c/{file}.c asm/{file}.s
+gcc c/{file}.c asm/{file}.o
 ```
 
 #### Execute
